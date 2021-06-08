@@ -6,7 +6,7 @@ from model.dml_models import *
 from reports.rep_refund_031knp import rep_refund_031knp
 import cx_Oracle
 import config as cfg
-from utils import *
+from model.utils import *
 #  Не удалять - неправильно красит среда!!!
 
 

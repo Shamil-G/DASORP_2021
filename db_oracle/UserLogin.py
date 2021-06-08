@@ -149,28 +149,29 @@ def login_page():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    password2 = request.form.get('password2')
-    if cfg.debug_level > 0:
-        print("/register. username: "+str(username))
+    if 'Operator DASORP' in g.user.roles or \
+            'Admin' in g.user.roles:
+        if request.method == 'POST':
+            username = request.form.get('username')
+            password = request.form.get('password')
+            password2 = request.form.get('password2')
+            if cfg.debug_level > 0:
+                print("/register. username: " + str(username))
+            if not (username and password and password2):
+                flash('Требуется заполнение всех полей')
+                return redirect(url_for('register'))
+            elif password != password2:
+                flash('Пароли не совпадают')
+                return redirect(url_for('register'))
 
-    if request.method == 'POST':
-        if not (username and password and password2):
-            flash('Требуется заполнение всех полей')
-            return redirect(url_for('register'))
-        elif password != password2:
-            flash('Пароли не совпадают')
-            return redirect(url_for('register'))
+            message = User.new_user(username, password)
+            if message:
+                flash(message)
+                return render_template('register.html')
+            else:
+                return redirect(url_for('login_page'))
 
-        message = User.new_user(username, password)
-        if message:
-            flash(message)
-            return render_template('register.html')
-        else:
-            return redirect(url_for('login_page'))
-
-    flash("Введите имя и пароль два раза")
+        flash("Введите имя и пароль два раза")
     return render_template('register.html')
 
 

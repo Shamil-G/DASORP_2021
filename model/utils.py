@@ -1,5 +1,5 @@
 from main_app import app
-from i18n import I18N
+from view.i18n import I18N
 from db_oracle.connect import get_connection
 from flask import send_from_directory, session, redirect, url_for, request
 import config as cfg
