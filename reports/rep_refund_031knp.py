@@ -13,7 +13,7 @@ def rep_refund_031knp():
     now = datetime.datetime.now()
     # today = datetime.date.today()
 
-    file_name = 'REFUND_031knp' + '.xlsx'
+    file_name = 'Отчет о переведенных из ГФСС в ГК ошибочных СО и пени, возвращенных обратно на счет ГФСС от ' + now.strftime("%d.%m.%Y %H-%M-%S") + '.xlsx'
     file_path = cfg.REPORTS_PATH + file_name
 
     if os.path.isfile(file_path):
@@ -86,30 +86,32 @@ def rep_refund_031knp():
 
     print("Провели расчет и формируем Excel: " + datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
 
-    common_format = workbook.add_format({'align': 'center'})
+    common_format = workbook.add_format({'align': 'center','border': 1})
     common_format.set_align('vcenter')
     common_format.set_text_wrap()
-    sum_pay_format = workbook.add_format({'num_format': '#,###,##0.00', 'font_color': 'black', 'align': 'vcenter'})
-    # date_format = workbook.add_format({'num_format':'dd/mm/yy', 'align': 'vcenter'})
+    common_format_2 = workbook.add_format({'align':'center','bold': True ,'border': 1})
+    common_format_2.set_align('vcenter')
+    common_format_2.set_text_wrap()
+    sum_pay_format = workbook.add_format({'num_format': '#,###,##0.00', 'font_color':'black', 'align': 'vcenter'})
+    #date_format = workbook.add_format({'num_format':'dd/mm/yy', 'align': 'vcenter'})
 
-    worksheet.write(0, 0, '№', common_format)
-    worksheet.write(0, 1, '№ заявки', common_format)
-    worksheet.write(0, 2, 'вх.№ письма ГК в ГФСС', common_format)
-    worksheet.write(0, 3, 'Дата письма ГК в ГФСС', common_format)
-    worksheet.write(0, 4, 'БИН плательщика', common_format)
-    worksheet.write(0, 5, 'Наименование плательщика', common_format)
-    worksheet.write(0, 6, 'ФИО участника СОСС', common_format)
-    worksheet.write(0, 7, 'ИИН участника СОСС', common_format)
-    worksheet.write(0, 8, 'Номер платежки отправки средств из ГФСС в ГК', common_format)
-    worksheet.write(0, 9, 'Дата отправки средств из ГФСС в ГК', common_format)
-    worksheet.write(0, 10, 'Сумма, переведенная  из ГФСС', common_format)
-    worksheet.write(0, 11, 'Период', common_format)
-    worksheet.write(0, 12, 'Дата поступления средств из  ГК в ГФСС', common_format)
-    worksheet.write(0, 13, 'Сумма, переведенная в ГФСС из ГК', common_format)
-    worksheet.write(0, 14, 'Номер письма Департамента Финансов', common_format)
-    worksheet.write(0, 15, 'Дата письма Департамента Финансов', common_format)
-    worksheet.write(0, 16, 'Причина возврата', common_format)
-
+    worksheet.write('A1','№',common_format_2)
+    worksheet.write('B1', '№ заявки', common_format_2)
+    worksheet.write('C1', 'вх.№ письма ГК в ГФСС', common_format_2)
+    worksheet.write('D1', 'Дата письма ГК в ГФСС', common_format_2)
+    worksheet.write('E1', 'БИН плательщика', common_format_2)
+    worksheet.write('F1', 'Наименование плательщика', common_format_2)
+    worksheet.write('G1', 'ФИО участника СОСС', common_format_2)
+    worksheet.write('H1', 'ИИН участника СОСС', common_format_2)
+    worksheet.write('I1', 'Номер платежки отправки средств из ГФСС в ГК', common_format_2)
+    worksheet.write('J1', 'Дата отправки средств из ГФСС в ГК', common_format_2)
+    worksheet.write('K1', 'Сумма, переведенная  из ГФСС', common_format_2)
+    worksheet.write('L1', 'Период', common_format_2)
+    worksheet.write('M1', 'Дата поступления средств из  ГК в ГФСС', common_format_2)
+    worksheet.write('N1', 'Сумма, переведенная в ГФСС из ГК', common_format_2)
+    worksheet.write('O1', 'Номер письма Департамента Финансов', common_format_2)
+    worksheet.write('P1', 'Дата письма Департамента Финансов', common_format_2)
+    worksheet.write('Q1', 'Причина возврата', common_format_2)
     row = 0
     for record in cursor:
         col = 0
