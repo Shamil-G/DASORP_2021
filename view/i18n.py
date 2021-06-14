@@ -12,6 +12,8 @@ class I18N:
         file_object = ''
         return_value = ''
         file_name = 'i18n.' + lang
+        if cfg.os == 'unix':
+            file_name = 'i18nu.' + lang
         n_objects = 0
         if cfg.debug_level > 4:
             print("1. I18N. Lang:"+lang+", resource_name: "+resource_name)
