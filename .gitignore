@@ -1,0 +1,10 @@
+venv/
+*.sh
+i18n.*
+reports/spool/
+.idea/
+__pycache__/
+db_oracle/__pycache__/
+model/__pycache__/
+reports/__pycache__/
+view/__pycache__/
