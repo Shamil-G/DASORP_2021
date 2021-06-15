@@ -61,6 +61,8 @@ class I18N:
                     break
         if cfg.debug_level > 4:
             print("5. I18N. return_value:" + return_value)
+        if return_value == '':
+            return_value = resource_name
         return return_value
 
     def close(self):

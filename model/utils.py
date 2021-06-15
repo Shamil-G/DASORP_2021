@@ -6,6 +6,7 @@ import config as cfg
 
 i18n = I18N()
 
+
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
     if cfg.debug_level > 0:
